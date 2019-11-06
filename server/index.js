@@ -17,23 +17,13 @@ app.use('/public', express.static(__dirname + '/public'));
 app.use('/api', fileRouter);
 
 
-// catch 404 and forward to error handler
+// error handler for invalid requests
 app.use(function(req, res, next) {
   const err = new Error('Not Found');
   err.status = 404;
-  next(err);
+  res.status(404).send('Sorry, we cannot find that.')
 });
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
 
 app.listen(8000, () => {
   console.log('8000');
