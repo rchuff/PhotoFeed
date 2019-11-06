@@ -1,9 +1,12 @@
 const express = require('express');
-const fileRoutes = require('./routes/file-upload');
+const fileRoutes = require('./routes/fileRoutes');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 
 const app = express();
+app.use(express.json());
+app.use(cors());
 
 let port = process.env.PORT;
 
